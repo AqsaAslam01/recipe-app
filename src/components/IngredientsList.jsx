@@ -1,5 +1,6 @@
+import React from 'react';
 
-export default function IngredientsList(props) {
+const IngredientsList = React.forwardRef((props, ref) => {
 
     const ingredientItems = props.ingredients.map(ingredient =>
         <li key={ingredient}>{ingredient}</li>
@@ -10,7 +11,7 @@ export default function IngredientsList(props) {
             <h2>Ingredients on hand:</h2>
             <ul className='ingredients-list' aria-live='polite'>{ingredientItems}</ul>
             {props.ingredients.length > 3 && <div className='get-recipe-container'>
-                <div>
+                <div ref={ref}>
                     <h3>Ready for a recipe?</h3>
                     <p>Generate a recipe from your list of ingredients.</p>
                 </div>
@@ -18,4 +19,6 @@ export default function IngredientsList(props) {
             </div>}
         </section>
     )
-}
+});
+
+export default IngredientsList;
